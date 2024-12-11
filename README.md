@@ -1,1 +1,1 @@
-# compare-linkedlist
+Program - compare two linked lists 
