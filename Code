@@ -1,0 +1,76 @@
+import java.util.*;
+
+class ListNode {
+    int data;
+    ListNode next;
+
+    ListNode(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedListComparator {
+    
+    public static int compareLinkedLists(ListNode head1, ListNode head2) {
+        ListNode current1 = head1;
+        ListNode current2 = head2;
+        
+        while (current1 != null && current2 != null) {
+            if (current1.data != current2.data) {
+                return 0;
+            }
+            
+            current1 = current1.next;
+            current2 = current2.next;
+        }
+        
+        if (current1 != null || current2 != null) {
+            return 0;
+        }
+        
+        return 1;
+    }
+
+    public static ListNode createLinkedList(Scanner scanner) {
+        ListNode head = null;
+        ListNode current = null;
+
+        System.out.print("Enter the number of elements in the linked list: ");
+        int n = scanner.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter element " + (i + 1) + ": ");
+            int data = scanner.nextInt();
+            ListNode newNode = new ListNode(data);
+            
+            if (head == null) {
+                head = newNode;
+                current = head;
+            } else {
+                current.next = newNode;
+                current = current.next;
+            }
+        }
+        
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the first linked list:");
+        ListNode llist1 = createLinkedList(scanner);
+        
+        System.out.println("Enter the second linked list:");
+        ListNode llist2 = createLinkedList(scanner);
+
+        int result = compareLinkedLists(llist1, llist2);
+
+        if (result == 1) {
+            System.out.println("The linked lists are equal");
+        } else {
+            System.out.println("The linked lists are not equal");
+        }
+    }
+}
